@@ -1,0 +1,112 @@
+{% include 'student/header.html' %}
+
+<style>
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 60px); /* Adjust height to fit between header and footer */
+    padding: 20px;
+  }
+
+  .form-wrapper {
+    width: 60%;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .form-wrapper th, .form-wrapper td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .form-wrapper th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .form-wrapper td input[type="text"],
+  .form-wrapper td input[type="date"],
+  .form-wrapper td select,
+  .form-wrapper td input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .form-wrapper td input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+
+  .form-wrapper td input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  .form-wrapper select {
+    padding: 8px;
+  }
+</style>
+
+<div class="container">
+  <div class="form-wrapper">
+    <form action="" method="post" enctype="multipart/form-data">
+      <table>
+        <tr>
+          <th>First Name</th>
+          <td><input type="text" name="firstname" value="{{ student_profile.firstname }}"></td>
+        </tr>
+        <tr>
+          <th>Place</th>
+          <td><input type="text" name="place" value="{{ student_profile.place }}"></td>
+        </tr>
+        <tr>
+          <th>Gender</th>
+          <td>
+            <select name="gender">
+              <option value="{{student_profile.gender}}" hidden selected>{{student_profile.gender}}</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>Date of Birth</th>
+          <td><input type="date" name="dob" value="{{ student_profile.dob }}"></td>
+        </tr>
+        <tr>
+          <th>Address</th>
+          <td><input type="text" name="address" value="{{ student_profile.address }}"></td>
+        </tr>
+        <tr>
+          <th>Photo</th>
+          <td><input type="file" name="photo" value="{{ student_profile.photo }}"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="submit" name="submit"></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+
+{% include 'student/footer.html' %}
+
+

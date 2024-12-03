@@ -1,0 +1,137 @@
+{% include 'admin/admin_header.html' %}
+<style>
+    /* General container for form alignment */
+.edit-event-container {
+    margin-left: 260px; /* Adjust for sidebar */
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 40px auto;
+}
+
+/* Form heading */
+.edit-event-heading {
+    text-align: center;
+    color: #007bff;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Table styling */
+.edit-event-table {
+    width: 100%;
+    border-spacing: 10px;
+}
+
+.edit-event-table th {
+    text-align: left;
+    font-weight: bold;
+    color: #333333;
+    padding-bottom: 10px;
+    width: 40%;
+}
+
+.edit-event-table td {
+    width: 60%;
+}
+
+/* Input styling */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #495057;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Button styling */
+.update-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.update-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .edit-event-container {
+        margin-left: 0;
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .edit-event-table th,
+    .edit-event-table td {
+        display: block;
+        width: 100%;
+    }
+}
+
+</style>
+<div class="edit-event-container">
+    <h2 class="edit-event-heading">Edit Event Notifications</h2>
+    <form action="" method="post" class="edit-event-form">
+        <table class="edit-event-table">
+            <tr>
+                <th>Event</th>
+                <td>
+                    <input type="text" name="event" value="{{ event_notification.event }}" class="form-input">
+                </td>
+            </tr>
+            <tr>
+                <th>Posted Date</th>
+                <td>
+                    <input type="date" name="posted_date" value="{{ event_notification.posted_date }}" class="form-input">
+                </td>
+            </tr>
+            <tr>
+                <th>Event Venue</th>
+                <td>
+                    <input type="text" name="venue" value="{{ event_notification.venue }}" class="form-input">
+                </td>
+            </tr>
+            <tr>
+                <th>Event Date</th>
+                <td>
+                    <input type="date" name="date" value="{{ event_notification.date }}" class="form-input">
+                </td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>
+                    <input type="time" name="time" value="{{ event_notification.time }}" class="form-input">
+                </td>
+            </tr>
+            <tr>
+                <th>Ticket Charge</th>
+                <td>
+                    <input type="text" name="fees" value="{{ event_notification.fees }}" class="form-input">
+                </td>
+            </tr>
+        </table>
+        <button type="submit" name="submit" class="update-btn">Update Event</button>
+    </form>
+</div>
+{% include 'admin/admin_footer.html' %}

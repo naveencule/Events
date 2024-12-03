@@ -1,0 +1,84 @@
+{% include 'student/header.html' %}
+<style>
+   
+.event-table-container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4f7fc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling the table */
+.event-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Table Header Styling */
+.event-table th {
+    background-color: #4facfe;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+    border: 1px solid #ddd;
+}
+
+/* Table Row Styling */
+.event-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Alternating Row Colors for Better Readability */
+.event-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.event-table tr:hover {
+    background-color: #eaf3fe;
+}
+
+/* Heading Styling */
+h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+</style>
+<form action="" method="post">
+    <div class="event-table-container">
+        <h2 style="text-align: center; color: #4facfe;">Event Notifications</h2>
+        <table border="1" class="event-table">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Posted Date</th>
+                    <th>Venue</th>
+                    <th>Event Date</th>
+                    <th>Time</th>
+                    <th>Fees</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in event_notification %}
+                <tr>
+                    <td>{{ event.event }}</td>
+                    <td>{{ event.posted_date }}</td>
+                    <td>{{ event.venue }}</td>
+                    <td>{{ event.date }}</td>
+                    <td>{{ event.time }}</td>
+                    <td>{{ event.fees }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</form>
+
+{% include 'student/footer.html' %}

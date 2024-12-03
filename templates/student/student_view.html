@@ -1,0 +1,106 @@
+{% include 'student/header.html' %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f9fc;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    .notes-container {
+        margin: 50px auto;
+        padding: 20px;
+        max-width: 800px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    .notes-container table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    .notes-container th,
+    .notes-container td {
+        padding: 15px;
+        border: 1px solid #ddd;
+    }
+
+    .notes-container th {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+    }
+
+    .notes-container tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .notes-container tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .notes-container td a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+        padding: 8px 12px;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .notes-container td a:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .notes-container {
+            margin: 20px;
+            padding: 10px;
+        }
+
+        .notes-container th,
+        .notes-container td {
+            font-size: 14px;
+            padding: 10px;
+        }
+    }
+</style>
+
+<div class="notes-container">
+    <h2 style="text-align: center; margin-bottom: 20px;">Student Notes</h2>
+    <form action="" method="post">
+        <table>
+            <thead>
+                <tr>
+                    <th>UserName</th>
+                    <th>Notes</th>
+                    <th>Reply</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for note in sent_notes %}
+                <tr>
+                    <td>{{ note.Register.firstname }}</td>
+                    <td>{{ note.notes }}</td>
+                    <td>
+                        {% if note.reply == "pending" %}
+                        <a href="/students_reply/{{ note.id }}/">Reply</a>
+                        {% else %}
+                        {{ note.reply }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+</div>
+
+{% include 'student/footer.html' %}

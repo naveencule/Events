@@ -1,0 +1,151 @@
+{% include 'admin/admin_header.html' %}
+<style>
+    /* Container styling for the form */
+.add-event-container {
+    margin-left: 260px; /* Adjust to account for the sidebar */
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 40px auto;
+}
+
+/* Heading styling */
+.add-event-heading {
+    text-align: center;
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Table styling */
+.add-event-table {
+    width: 100%;
+    border-spacing: 10px;
+}
+
+.add-event-table th {
+    text-align: left;
+    color: #333;
+    font-weight: bold;
+    padding-bottom: 10px;
+    width: 40%;
+}
+
+.add-event-table td {
+    width: 60%;
+}
+
+/* Input styling */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    color: #495057;
+}
+
+.form-input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit button styling */
+.submit-cell {
+    text-align: center;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .add-event-container {
+        margin-left: 0;
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .add-event-table th, .add-event-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+}
+
+</style>
+<div class="add-event-container">
+    <h2 class="add-event-heading">Add Event</h2>
+    <form action="" method="post" class="add-event-form">
+        
+        <table class="add-event-table">
+            <tr>
+                <th>Event Name</th>
+                <td>
+                    <input type="text" name="event" class="form-input" required>
+                </td>
+            </tr>
+            <tr>
+                <th>Posted Date</th>
+                <td>
+                    <input type="date" name="posted_date" class="form-input" required>
+                </td>
+            </tr>
+            <tr>
+                <th>Venue</th>
+                <td>
+                    <input type="text" name="venue" class="form-input" required>
+                </td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>
+                    <input type="date" name="date" class="form-input" required>
+                </td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>
+                    <input type="time" name="time" class="form-input" required>
+                </td>
+            </tr>
+            <tr>
+                <th>Ticket Charge</th>
+                <td>
+                    <input type="text" name="fees" class="form-input" required>
+                </td>
+            </tr>
+            <tr>
+                <th>Available Tickets</th>
+                <td>
+                    <input type="number" name="available_ticket" class="form-input" required>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="submit-cell">
+                    <button type="submit" name="submit" class="submit-btn">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% include 'admin/admin_footer.html' %}

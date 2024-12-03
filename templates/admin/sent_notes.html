@@ -1,0 +1,194 @@
+{% include 'admin/admin_header.html' %}
+
+<style>
+    /* Container for the notes section */
+.notes-container {
+    margin-left: 260px; /* Adjust for the sidebar */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+/* Heading styling */
+.notes-heading {
+    text-align: center;
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Form styling */
+.add-notes-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.form-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-select, .form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    color: #495057;
+}
+
+.form-select:focus, .form-input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-submit-btn {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-submit-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Table styling */
+.notes-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.notes-table th, .notes-table td {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+.notes-table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+}
+
+.notes-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.notes-table tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Links styling */
+.edit-link, .delete-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.edit-link:hover {
+    color: #0056b3;
+}
+
+.delete-link {
+    color: #dc3545;
+}
+
+.delete-link:hover {
+    color: #a71d2a;
+}
+
+/* Reply Pending styling */
+.reply-pending {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .notes-container {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .form-submit-btn {
+        width: 100%;
+    }
+
+    .notes-table {
+        font-size: 14px;
+    }
+}
+
+</style>
+<div class="notes-container">
+    <h2 class="notes-heading">Manage Notes</h2>
+
+    <!-- Form for adding notes -->
+    <form action="" method="post" class="add-notes-form">
+        <label for="student_id" class="form-label">Select Student</label>
+        <select name="student_id" id="student_id" class="form-select" required>
+            {% for student in students %}
+            <option value="{{ student.id }}">{{ student.firstname }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="notes" class="form-label">Enter Notes</label>
+        <input type="text" name="notes" id="notes" class="form-input" required>
+
+        <button type="submit" name="submit" class="form-submit-btn">Submit</button>
+    </form>
+
+    <!-- Table displaying notes -->
+    <form action="" class="notes-table-form">
+        <table class="notes-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Notes</th>
+                    <th>Student Reply</th>
+                    <th>Edit Note</th>
+                    <th>Delete Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for note in sent_notes %}
+                <tr>
+                    <td>{{ note.Register.firstname }}</td>
+                    <td>{{ note.notes }}</td>
+                    <td>
+                        {% if note.reply == "pending" %}
+                        <span class="reply-pending">Reply Pending</span>
+                        {% else %}
+                        {{ note.reply }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/edit_notes/{{ note.id }}/" class="edit-link">Edit</a>
+                    </td>
+                    <td>
+                        <a href="/delete_notes/{{ note.id }}/" class="delete-link" 
+                           onclick="return confirm('Are you sure you want to delete this note?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+</div>
+
+{% include 'admin/admin_footer.html' %}

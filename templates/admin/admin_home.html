@@ -1,0 +1,104 @@
+{% include 'admin/admin_header.html' %}
+<style>
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(60vh - 70px); /* Adjust height to fit between navbar and footer if any */
+    padding: 20px;
+    margin-left: 200px; /* Leave space for the sidebar */
+}
+
+.event-table-wrapper {
+    width: 80%;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.event-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.event-table th, .event-table td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.event-table th {
+    background-color: #007bff; /* Navbar blue color for headers */
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.event-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.event-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.event-table td a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.event-table td a:hover {
+    text-decoration: underline;
+}
+
+.event-table td {
+    color: #333333;
+}
+
+button, a {
+    cursor: pointer;
+}
+</style>
+<h1 style="font-family: Georgia, 'Times New Roman', Times, serif; margin-left: 500px; color: #007bff;">WELCOME TO ADMIN HOME</h1>
+<div class="container">
+  <div class="event-table-wrapper">
+      <form action="" method="post">
+          <br><br>
+          <table class="event-table">
+              <tr>
+                  <th>Event</th>
+                  <th>Posted Date</th>
+                  <th>Venue</th>
+                  <th>Event Date</th>
+                  <th>Time</th>
+                  <th>Fees</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+              </tr>
+              {% for event in event_notification %}
+              <tr>
+                  <td>{{ event.event }}</td>
+                  <td>{{ event.posted_date }}</td>
+                  <td>{{ event.venue }}</td>
+                  <td>{{ event.date }}</td>
+                  <td>{{ event.time }}</td>
+                  <td>{{ event.fees }}</td>
+                  <td>
+                      <a href="/edit_event_notification/{{ event.id }}/">Edit</a>
+                  </td>
+                  <td>
+                      <a href="/delete_event_notification/{{ event.id }}/" 
+                          onclick="return confirm('Are you sure you want to delete this event?')">Delete</a>
+                  </td>
+              </tr>
+              {% endfor %}
+          </table>
+      </form>
+  </div>
+</div>
+
+    
+
+{% include 'admin/admin_footer.html' %}
